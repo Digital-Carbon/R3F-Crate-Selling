@@ -9,7 +9,7 @@ class CfgPatches {
 class CfgFunctions {
 	class Enigma {
 		class main {
-			file = "\x\addons\gadd_extras\init";
+			file = "gadd_extras\init";
 			class init {
 				postInit = 1;
 			};
