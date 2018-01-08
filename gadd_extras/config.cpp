@@ -7,7 +7,7 @@ class CfgPatches {
 	};
 };
 class CfgFunctions {
-	class Enigma {
+	class gadd_extras {
 		class main {
 			file = "gadd_extras\init";
 			class init {
