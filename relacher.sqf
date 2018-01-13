@@ -1,4 +1,4 @@
-/**
+s/**
 	R3F Crate Selling Script by [GADD]Monkeynutz
 	Allows selling of crates at the wastedump. Based on the origional script
 	that can be found using the links in the Readme.md
@@ -19,9 +19,9 @@ _crateList = [
 			"O_CargoNet_01_ammo_F",		
 			"B_CargoNet_01_Ammo_F",		
 			"Exile_Container_SupplyBox",	
-			"O_SupplyCrate_F",
-			"I_SupplyCrate_F",
-			"B_SupplyCrate_F",
+			"O_supplyCrate_F",
+			"I_supplyCrate_F",
+			"B_supplyCrate_F",
 			"Box_NATO_AmmoOrd_F",
 			"C_IDAP_supplyCrate_F",
 			"Box_IDAP_AmmoOrd_F",
