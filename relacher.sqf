@@ -7,6 +7,28 @@
 
 private _useInfiSTAR = true;	// If you use infiSTAR, set this to true to have the crate selling logged in infiSTAR_Logs
 private _convenience = 0.9;	// Change this to what ever you want. Default = 0.9. 0.9 = 10% taken from the earnings for convenience.
+_crateList = [	
+		// I added this because people add things to the Movable Objects thing in R3F that aren't crates.
+		// This array prevents people from selling a car by accident.
+		// Add to this with classnames of Vehicles/Crates you want to be able to be used in this script.
+		// Example: Crates are replaced with the SDV in the Underwater missions. Add them here if you want to.
+			"I_CargoNet_01_ammo_F",		
+			"Box_NATO_Wps_F",		
+			"CargoNet_01_box_F",		
+			"Box_NATO_Ammo_F",		
+			"O_CargoNet_01_ammo_F",		
+			"B_CargoNet_01_Ammo_F",		
+			"Exile_Container_SupplyBox",	
+			"O_SupplyCrate_F",
+			"I_SupplyCrate_F",
+			"B_SupplyCrate_F",
+			"Box_NATO_AmmoOrd_F",
+			"C_IDAP_supplyCrate_F",
+			"Box_IDAP_AmmoOrd_F",
+			"Box_IDAP_Equip_F",
+			"Box_IDAP_Uniforms_F",
+			"C_IDAP_CargoNet_01_supplies_F"
+		];
 
 if (R3F_LOG_mutex_local_verrou) then
 {
@@ -34,6 +56,15 @@ else
 		private _newrevenue = _revenue*_convenience;
 		private _revrespect = ((_newrevenue/10)*0.8);	// Takes some respect off of the total respect earned for balancing reasons. Default = 0.8 = 20%
 		private _percentage = (100-(_convenience*100));	// DO NOT MODIFY
+		
+		if !((typeOf _crate) in _crateList) exitWith
+		{
+			["InfoTitleAndText", ["Crate Selling", "This object was not a crate. Selling of contents aborted."]] call ExileClient_gui_toaster_addTemplateToast;
+			R3F_LOG_joueur_deplace_objet = objNull;
+			sleep 0.25;
+			
+			R3F_LOG_mutex_local_verrou = false;
+		};
 		
 		clearWeaponCargoGlobal 		_crate;
 		clearItemCargoGlobal 		_crate;
