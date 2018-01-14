@@ -7,7 +7,7 @@ s/**
 
 private _useInfiSTAR = true;	// If you use infiSTAR, set this to true to have the crate selling logged in infiSTAR_Logs
 private _convenience = 0.9;	// Change this to what ever you want. Default = 0.9. 0.9 = 10% taken from the earnings for convenience.
-_crateList = [	
+private _crateList = [	
 		// I added this because people add things to the Movable Objects thing in R3F that aren't crates.
 		// This array prevents people from selling a car by accident.
 		// Add to this with classnames of Vehicles/Crates you want to be able to be used in this script.
