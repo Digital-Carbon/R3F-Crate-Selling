@@ -1,4 +1,4 @@
-s/**
+/**
 	R3F Crate Selling Script by [GADD]Monkeynutz
 	Allows selling of crates at the wastedump. Based on the origional script
 	that can be found using the links in the Readme.md
