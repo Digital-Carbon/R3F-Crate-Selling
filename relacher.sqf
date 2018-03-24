@@ -5,8 +5,8 @@
 	Shows Toasts and deletes the crate after adding the money and respect to the player.
 **/
 
-private _useInfiSTAR = true;	// If you use infiSTAR, set this to true to have the crate selling logged in infiSTAR_Logs
-private _convenience = 0.9;	// Change this to what ever you want. Default = 0.9. 0.9 = 10% taken from the earnings for convenience.
+private _useInfiSTAR = true; 	// If you use infiSTAR, set this to true to have the crate selling logged in infiSTAR_Logs
+private _convenience = 0.9;		// Change this to what ever you want. Default = 0.9. 0.9 = 10% taken from the earnings for convenience.
 private _crateList = [	
 		// I added this because people add things to the Movable Objects thing in R3F that aren't crates.
 		// This array prevents people from selling a car by accident.
@@ -38,15 +38,13 @@ else
 {
 	R3F_LOG_mutex_local_verrou = true;
 	
-	// Beginning of Crate Selling Script.
-	
 	private _foundTrader = false;
 	{
 		_foundTrader = true;
-	} forEach nearestObjects [player, ["Exile_Trader_WasteDump"], 12]; // Distance to the trader. Default = 12.
+	} forEach nearestObjects [player, ["Exile_Trader_WasteDump"], 12];
 
 	if (_foundTrader) then {
-		
+			
 		private _target = player;
 		private _targetUID = getPlayerUID player;
 		private _targetName = name player;
@@ -54,8 +52,8 @@ else
 		private _cargo = _crate call ExileClient_util_containerCargo_list;	
 		private _revenue = _cargo call ExileClient_util_gear_calculateTotalSellPrice;
 		private _newrevenue = _revenue*_convenience;
-		private _revrespect = ((_newrevenue/10)*0.8);	// Takes some respect off of the total respect earned for balancing reasons. Default = 0.8 = 20%
-		private _percentage = (100-(_convenience*100));	// DO NOT MODIFY
+		private _revrespect = ((_newrevenue/10)*0.8);
+		private _percentage = (100-(_convenience*100));
 		
 		if !((typeOf _crate) in _crateList) exitWith
 		{
@@ -106,8 +104,6 @@ else
 		
 		deleteVehicle _crate;
 	};
-	
-	// End of Crate Selling Script.
 	
 	R3F_LOG_joueur_deplace_objet = objNull;
 	sleep 0.25;
