@@ -3,6 +3,7 @@
 	Allows selling of crates at the wastedump. Based on the origional script
 	that can be found using the links in the Readme.md
 	Shows Toasts and deletes the crate after adding the money and respect to the player.
+	Public Variables fixed by [FPS]Kuplion. Tks bby.
 **/
 
 private _useInfiSTAR = true; 	// If you use infiSTAR, set this to true to have the crate selling logged in infiSTAR_Logs
@@ -71,18 +72,18 @@ else
 		
 		private _cash = player getVariable ["ExileMoney", 0]; 
 		private _crateCash = _crate getVariable ["ExileMoney", 0];
-		private _currentRespect = player getVariable ["ExileScore", 0]; 
+		private _currentRespect = ExileClientPlayerScore; 
 		private _overallCash = round (_cash+_crateCash);
 		private _addedRev = round (_newrevenue+_overallCash);
 		private _addedRes = round (_currentRespect+_revrespect);
 				
 		_target setVariable ["ExileMoney",_addedRev, true];  
 			
-		_target setVariable ['ExileScore', _addedRes, true];  
+		//_target setVariable ['ExileScore', _addedRes, true];  
 			
 		_target setVariable['PLAYER_STATS_VAR',[_target getVariable ['ExileMoney', 0],_addedRes],true];  
 		ExileClientPlayerScore = _addedRes;  
-		(owner _target) publicVariableClient 'ExileClientPlayerScore';  
+		//(owner _target) publicVariableClient 'ExileClientPlayerScore';  
 		
 		R3FCrateSale = [_target, _targetUID, _addedRev, _addedRes];
 		publicVariableServer "R3FCrateSale"; 
