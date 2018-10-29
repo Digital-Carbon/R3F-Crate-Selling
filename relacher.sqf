@@ -79,7 +79,7 @@ else
 				
 		_target setVariable ["ExileMoney",_addedRev, true];  
 			
-		//_target setVariable ['ExileScore', _addedRes, true];  
+		_target setVariable ['ExileScore', _addedRes, true];  
 			
 		_target setVariable['PLAYER_STATS_VAR',[_target getVariable ['ExileMoney', 0],_addedRes],true];  
 		ExileClientPlayerScore = _addedRes;  
