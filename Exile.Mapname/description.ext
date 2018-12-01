@@ -1,0 +1,49 @@
+class CfgNetworkMessages
+{
+	// GADD CrateDump
+	class getMoneyAndRespect
+	{
+		module = "cratedump";
+		parameters[] =
+		{
+			"STRING",
+			"STRING"
+		};
+	};
+	class receiveMoneyAndRespect
+	{
+		module = "cratedump";
+		parameters[] =
+		{
+			"SCALAR",
+			"SCALAR"
+		};
+	};
+	class updateMoneyAndRespect
+	{
+		module = "cratedump";
+		parameters[] =
+		{
+			"SCALAR",
+			"SCALAR",
+			"STRING",
+			"STRING"
+		};
+	};
+	class updatelogs
+	{
+		module = "cratedump";
+		parameters[] =
+		{
+			"STRING",
+			"STRING",
+			"SCALAR",
+			"SCALAR",
+			"SCALAR",
+			"SCALAR",
+			"SCALAR",
+			"SCALAR",
+			"STRING"
+		};
+	};
+};
