@@ -46,12 +46,13 @@ else
 
 	if (_foundTrader) then {
 		
+		private _target = player;
+		private _targetUID = getPlayerUID player;
+		
 		// Gets the client Money and Respect from the server.
 		["getMoneyAndRespect", [_targetUID, _target]] call ExileClient_system_network_send;	
 		diag_log format ["GADD Crate Dump DEBUG || getMoneyAndRespect requested from server = UID Sent: (%1) Player Sent: [%2]", _targetUID, _target];
-		
-		private _target = player;
-		private _targetUID = getPlayerUID player;
+
 		private _targetName = name player;
 		private _crate = R3F_LOG_joueur_deplace_objet;
 		private _cargo = _crate call ExileClient_util_containerCargo_list;	
