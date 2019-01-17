@@ -7,7 +7,7 @@ class CfgNetworkMessages
 		parameters[] =
 		{
 			"STRING",
-			"STRING"
+			"OBJECT"
 		};
 	};
 	class receiveMoneyAndRespect
@@ -27,7 +27,7 @@ class CfgNetworkMessages
 			"SCALAR",
 			"SCALAR",
 			"STRING",
-			"STRING"
+			"OBJECT"
 		};
 	};
 	class updatelogs
