@@ -6,7 +6,7 @@
 	Public Variables fixed by [FPS]Kuplion. Tks bby.
 **/
 
-private _useInfiSTAR = true; 	// If you use infiSTAR, set this to true to have the crate selling logged in infiSTAR_Logs
+private _useInfiSTAR = false; 	// If you use infiSTAR, set this to true to have the crate selling logged in infiSTAR_Logs
 private _convenience = 0.9;		// Change this to what ever you want. Default = 0.9. 0.9 = 10% taken from the earnings for convenience.
 private _crateList = [	
 		// I added this because people add things to the Movable Objects thing in R3F that aren't crates.
@@ -45,8 +45,10 @@ else
 	} forEach nearestObjects [player, ["Exile_Trader_WasteDump"], 12]; // Distance to the trader. Default = 12.
 
 	if (_foundTrader) then {
-	
-		["getMoneyAndRespect", [_targetUID, _target]] call ExileClient_system_network_send;
+		
+		// Gets the client Money and Respect from the server.
+		["getMoneyAndRespect", [_targetUID, _target]] call ExileClient_system_network_send;	
+		diag_log format ["GADD Crate Dump DEBUG || getMoneyAndRespect requested from server = UID Sent: (%1) Player Sent: [%2]", _targetUID, _target];
 		
 		private _target = player;
 		private _targetUID = getPlayerUID player;
@@ -73,26 +75,31 @@ else
 		clearBackpackCargoGlobal 	_crate;
 		
 		//private _cash = player getVariable ["ExileMoney", 0]; 
-		_cash = GADDClientPlayerMoney;
+		private _cash = GADDClientPlayerMoney;
 		
 		private _crateCash = _crate getVariable ["ExileMoney", 0];
 		
 		private _currentRespect = GADDClientAccountScore; 
+		
+		diag_log format["GADD Crate Dump DEBUG || receiveMoneyAndRespect received from server (Relacher) = Money received: [%1] Respect received: [%2] Cash Set before transaction: (%3) Respect set before transaction: (%4)", GADDClientPlayerMoney, GADDClientAccountScore, _cash, _currentRespect];
+		
 		private _overallCash = round (_cash+_crateCash);
 		private _addedRev = round (_newrevenue+_overallCash);
 		private _addedRes = round (_currentRespect+_revrespect);
 				
-		_target setVariable ["ExileMoney",_addedRev, true];  
+		//_target setVariable ["ExileMoney",_addedRev, true];  
 			
-		_target setVariable ['ExileScore', _addedRes, true];  
+		//_target setVariable ['ExileScore', _addedRes, true];  
 			
-		_target setVariable['PLAYER_STATS_VAR',[_target getVariable ['ExileMoney', 0],_addedRes],true];  
+		//_target setVariable['PLAYER_STATS_VAR',[_target getVariable ['ExileMoney', 0],_addedRes],true];  
 		ExileClientPlayerScore = _addedRes;  
 		//(owner _target) publicVariableClient 'ExileClientPlayerScore';  
 		
 		//R3FCrateSale = [_target, _targetUID, _addedRev, _addedRes];
 		//publicVariableServer "R3FCrateSale"; 
 		["updateMoneyAndRespect", [_addedRev, _addedRes, _targetUID, _target]] call ExileClient_system_network_send;
+		
+		diag_log format["GADD Crate Dump DEBUG || updateMoneyAndRespect sent to server = Money sent: [%1] Respect sent: [%2] for (%3) %4", _addedRev, _addedRes, _targetUID, _target];
 			
 		[format["<t size='30' font='OrbitronMedium' color='#00fff6'>Crate Contents Sold!</t><br />    
 		<t size='24' font='PuristaMedium' color='#10ff00'>+%1<img image='\exile_assets\texture\ui\poptab_inline_ca.paa' size='24'/><br/> 
