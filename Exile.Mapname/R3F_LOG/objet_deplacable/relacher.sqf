@@ -48,11 +48,10 @@ else
 		
 		private _target = player;
 		private _targetUID = getPlayerUID player;
-		
 		// Gets the client Money and Respect from the server.
-		["getMoneyAndRespect", [_targetUID, _target]] call ExileClient_system_network_send;	
-		diag_log format ["GADD Crate Dump DEBUG || getMoneyAndRespect requested from server = UID Sent: (%1) Player Sent: [%2]", _targetUID, _target];
-
+		//["getMoneyAndRespect", [_targetUID, _target]] call ExileClient_system_network_send;	
+		//diag_log format ["GADD Crate Dump DEBUG || getMoneyAndRespect requested from server = UID Sent: (%1) Player Sent: [%2]", _targetUID, _target];
+		
 		private _targetName = name player;
 		private _crate = R3F_LOG_joueur_deplace_objet;
 		private _cargo = _crate call ExileClient_util_containerCargo_list;	
@@ -75,12 +74,13 @@ else
 		clearMagazineCargoGlobal 	_crate;
 		clearBackpackCargoGlobal 	_crate;
 		
-		//private _cash = player getVariable ["ExileMoney", 0]; 
-		private _cash = GADDClientPlayerMoney;
+		private _cash = player getVariable ["ExileMoney", 0]; 
+		//private _cash = GADDClientPlayerMoney;
 		
 		private _crateCash = _crate getVariable ["ExileMoney", 0];
 		
-		private _currentRespect = GADDClientAccountScore; 
+		//private _currentRespect = GADDClientAccountScore; 
+		private _currentRespect = ExileClientPlayerScore; 
 		
 		diag_log format["GADD Crate Dump DEBUG || receiveMoneyAndRespect received from server (Relacher) = Money received: [%1] Respect received: [%2] Cash Set before transaction: (%3) Respect set before transaction: (%4)", GADDClientPlayerMoney, GADDClientAccountScore, _cash, _currentRespect];
 		
